@@ -29,12 +29,9 @@ let port = process.env.PORT || 3000;
 
 
 app.post('/signup', (req, res) => {
-  let name = req.body.username;
-  let pass = req.body.password;
-  let hash = bcrypt.hashSync(pass, salt);
   let newUser = new UsersModel({
-    username: name,
-    password: hash
+    username: req.body.username,
+    password: bcrypt.hashSync(req.body.password, salt)
   });
   newUser.save(err => {
     if (err) {
@@ -181,5 +178,5 @@ app.delete('/deleteMessages', (req, res) => {
 });
 
 app.listen(port, () => {
-  // console.log(`listening on port ${port}`);
+  console.log(`listening on port ${port}`);
 });

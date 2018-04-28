@@ -1,3 +1,12 @@
+/*
+Handle signup/login errors
+Add URL to Github
+
+https://devcenter.heroku.com/articles/git
+https://devcenter.heroku.com/articles/config-vars
+*/
+
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 const $ = require('jquery');

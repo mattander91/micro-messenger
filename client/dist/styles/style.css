@@ -60,7 +60,7 @@ body {
 }
 
 .buttons {
-  width: 15%;
+  width: 35%;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -73,7 +73,7 @@ body {
 
 .left {
   float: left;
-  width: 15%;
+  width: 20%;
   height: 700px;
   border: 1px solid #e6e6e6;
   background-color: #fff;
@@ -129,7 +129,7 @@ body {
   position: relative;
   height: fit-content;
   float: left;
-  width: 85%;
+  width: 80%;
   height: 700px;
   border-right: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
@@ -164,7 +164,6 @@ body {
   font-size: 16px;
   height: 40px;
   padding-left: 8px;
-  margin-left: 10px;
   border: 0;
   background-color: #eceff1;
   width: 50%;
@@ -173,6 +172,7 @@ body {
   font-weight: 400;
   position: absolute;
   bottom: 0;
+  left: 250px;
   margin-bottom: 10px;
 }
 
