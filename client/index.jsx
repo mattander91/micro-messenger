@@ -16,6 +16,7 @@ const Home = require('./components/Home.jsx');
 const HandleGroup = require('./components/HandleGroup.jsx');
 const Login = require('./components/Login.jsx');
 const About = require('./components/About.jsx');
+const Helpers = require('./helpers.js');
 
 class App extends React.Component {
   constructor() {
@@ -48,19 +49,13 @@ class App extends React.Component {
   }
 
   fetchMessagesFromClick(groupName) {
-    $.ajax({
-      type: 'GET',
-      url: 'https://micro-messenger.herokuapp.com/getMessages',
-      data: {groupName: groupName},
-      success: (fetchedMessages) => {
-        this.setState({
-          messages: fetchedMessages,
-          currentGroup: groupName
-        });
-      },
-      failure: (err) => {
-        // console.log(err);
-      }
+    let url = 'https://micro-messenger.herokuapp.com/getMessages';
+    let data = {groupName: groupName};
+    Helpers.ajaxCalls('GET', url, data, 'fetchMessagesFromClick', (data) => {
+      this.setState({
+        messages: data,
+        currentGroup: groupName
+      });
     });
   }
 

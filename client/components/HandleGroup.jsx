@@ -1,5 +1,5 @@
 const React = require('react');
-const $ = require('jquery');
+const Helpers = require('../helpers.js');
 const GroupsList = require('./GroupsList.jsx');
 
 
@@ -23,33 +23,18 @@ class HandleGroup extends React.Component {
 
   addNewGroup(e) {
     e.preventDefault();
-    let newGroup = {
-      groupName: this.state.newGroup
-    }
-    $.ajax({
-      type: 'POST',
-      url: 'https://micro-messenger.herokuapp.com/group',
-      data: newGroup,
-      success: () => {
-        this.props.fetchGroups();
-      },
-      error: (err) => {
-        // console.log('GET user messages failed: ', err);
-      }
+    let newGroup = { groupName: this.state.newGroup }
+    let url = 'https://micro-messenger.herokuapp.com/group';
+    Helpers.ajaxCalls('POST', url, newGroup, 'addNewGroup', (data) => {
+      this.props.fetchGroups();
     });
   }
 
   deleteGroup(groupName) {
-    $.ajax({
-      type: 'DELETE',
-      url: 'https://micro-messenger.herokuapp.com/deleteGroup',
-      data: {groupName: groupName},
-      success: () => {
-        this.props.fetchGroups();
-      },
-      failure: (err) => {
-        // console.log(err);
-      }
+    let data = {groupName: groupName};
+    let url = 'https://micro-messenger.herokuapp.com/deleteGroup';
+    Helpers.ajaxCalls('DELETE', url, data, 'deleteGroup', (data) => {
+      this.props.fetchGroups();
     });
   }
 

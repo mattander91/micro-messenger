@@ -1,5 +1,5 @@
 const React = require('react');
-const $ = require('jquery');
+const Helpers = require('../helpers.js');
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class SignUp extends React.Component {
     this.handleNewUsername = this.handleNewUsername.bind(this);
     this.handleNewPassword = this.handleNewPassword.bind(this);
     this.signupNewUser = this.signupNewUser.bind(this);
+    this.checkInput = this.checkInput.bind(this);
   }
 
   handleNewUsername(e) {
@@ -28,25 +29,33 @@ class SignUp extends React.Component {
     });
   }
 
+  //Prevents HTML injection to form inputs
+  checkInput(input) {
+    const forbidden = ['>', '<', '}', '{', '.', ',', '|'];
+    for (let i = 0; i < forbidden.length; i++) {
+      if (input.includes(forbidden[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   signupNewUser(e) {
     e.preventDefault();
     let newUser = {
       username: this.state.newUserName,
       password: this.state.newPassword
     }
-    $.ajax({
-      type: 'POST',
-      url: 'https://micro-messenger.herokuapp.com/signUp',
-      data: newUser,
-      success: () => {
+    let url = 'https://micro-messenger.herokuapp.com/signUp';
+    if (this.checkInput(newUser.username) && this.checkInput(newUser.password)) {
+      Helpers.ajaxCalls('POST', url, newUser, 'signupNewUser', (data) => {
         sessionStorage.setItem('user', this.state.newUserName);
         this.props.handleHome();
         this.props.setUser();
-      },
-      error: (err) => {
-        alert('That username has been taken! Please try another');
-      }
-    });
+      });
+    } else {
+      alert('Username and password must not contain special characters');
+    }
   }
 
   render() {

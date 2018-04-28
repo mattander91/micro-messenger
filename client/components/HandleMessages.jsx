@@ -1,5 +1,5 @@
 const React = require('react');
-const $ = require('jquery');
+const Helpers = require('../helpers.js');
 const MessagesList = require('./MessagesList.jsx');
 
 class HandleMessages extends React.Component {
@@ -11,6 +11,7 @@ class HandleMessages extends React.Component {
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
     this.resetForm = this.resetForm.bind(this);
+    this.checkInput = this.checkInput.bind(this);
   }
 
 
@@ -22,6 +23,17 @@ class HandleMessages extends React.Component {
     });
   }
 
+  //Prevents HTML injection to form inputs
+  checkInput(input) {
+    const forbidden = ['>', '<', '}', '{', '.', ',', '|'];
+    for (let i = 0; i < forbidden.length; i++) {
+      if (input.includes(forbidden[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   submitMessage(e) {
     e.preventDefault();
     let messageObj = {
@@ -29,17 +41,14 @@ class HandleMessages extends React.Component {
       username: this.props.user,
       group: this.props.group
     }
-    $.ajax({
-      type: 'POST',
-      url: 'https://micro-messenger.herokuapp.com/message',
-      data: messageObj,
-      success: (data) => {
+    let url = 'https://micro-messenger.herokuapp.com/message';
+    if (this.checkInput(messageObj.message)) {
+      Helpers.ajaxCalls('POST', url, messageObj, 'submitMessage', (data) => {
         this.props.fetchMessagesFromClick(this.props.group);
-      },
-      error: (err) => {
-        // console.log('POST failed');
-      }
-    })
+      });
+    } else {
+      alert('Message must not contain special characters');
+    }
   }
 
   resetForm() {

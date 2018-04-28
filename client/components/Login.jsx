@@ -1,5 +1,5 @@
 const React = require('react');
-const $ = require('jquery');
+const Helpers = require('../helpers.js');
 
 class Login extends React.Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class Login extends React.Component {
     this.handleLoginUsername = this.handleLoginUsername.bind(this);
     this.handleLoginPassword = this.handleLoginPassword.bind(this);
     this.loginUser = this.loginUser.bind(this);
+    this.checkInput = this.checkInput.bind(this);
   }
 
 
@@ -28,25 +29,33 @@ class Login extends React.Component {
     });
   }
 
+  //Prevents HTML injection to form inputs
+  checkInput(input) {
+    const forbidden = ['>', '<', '}', '{', '.', ',', '|'];
+    for (let i = 0; i < forbidden.length; i++) {
+      if (input.includes(forbidden[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   loginUser(e) {
     e.preventDefault();
-    var user = {
+    let user = {
       loginUsername: this.state.loginUsername,
       loginPassword: this.state.loginPassword
     }
-    $.ajax({
-      type: 'POST',
-      url: 'https://micro-messenger.herokuapp.com/login',
-      data: user,
-      success: () => {
+    let url = 'https://micro-messenger.herokuapp.com/login';
+    if (this.checkInput(user.loginUsername) && this.checkInput(user.loginPassword)) {
+      Helpers.ajaxCalls('POST', url, user, 'loginUser', (data) => {
         sessionStorage.setItem('user', this.state.loginUsername);
         this.props.handleHome();
         this.props.setUser();
-      },
-      error: (err) => {
-        alert('Sorry we could not find that username and/or password. Please try again.');
-      }
-    });
+      });
+    } else {
+      alert('Username and password must not contain special characters');
+    }
   }
 
   render() {
