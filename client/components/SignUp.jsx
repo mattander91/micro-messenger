@@ -44,7 +44,7 @@ class SignUp extends React.Component {
         this.props.setUser();
       },
       error: (err) => {
-        console.log('Signup failed: ', err);
+        // console.log('Signup failed: ', err);
       }
     });
   }

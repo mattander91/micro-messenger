@@ -50,7 +50,7 @@ class App extends React.Component {
         });
       },
       failure: (err) => {
-        console.log(err);
+        // console.log(err);
       }
     });
   }
@@ -65,7 +65,7 @@ class App extends React.Component {
         });
       },
       failure: (err) => {
-        console.log('error: ', err);
+        // console.log('error: ', err);
       }
     });
   }

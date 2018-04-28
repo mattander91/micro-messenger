@@ -34,7 +34,7 @@ class HandleGroup extends React.Component {
         this.props.fetchGroups();
       },
       error: (err) => {
-        console.log('GET user messages failed: ', err);
+        // console.log('GET user messages failed: ', err);
       }
     });
   }
@@ -48,7 +48,7 @@ class HandleGroup extends React.Component {
         this.props.fetchGroups();
       },
       failure: (err) => {
-        console.log(err);
+        // console.log(err);
       }
     });
   }

@@ -34,11 +34,10 @@ class HandleMessages extends React.Component {
       url: 'https://micro-messenger.herokuapp.com/message',
       data: messageObj,
       success: (data) => {
-        console.log('POST successful');
         this.props.fetchMessagesFromClick(this.props.group);
       },
       error: (err) => {
-        console.log('POST failed');
+        // console.log('POST failed');
       }
     })
   }

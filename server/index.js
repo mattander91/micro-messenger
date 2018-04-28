@@ -38,10 +38,10 @@ app.post('/signup', (req, res) => {
   });
   newUser.save(err => {
     if (err) {
-      console.log('error ' + err);
+      // console.log('error ' + err);
       res.sendStatus(500);
     } else {
-      console.log('user ' + name + ' saved');
+      // console.log('user ' + name + ' saved');
       res.sendStatus(202);
     }
   });
@@ -52,15 +52,15 @@ app.post('/login', (req, res) => {
   let password = req.body.loginPassword;
   UsersModel.findOne({username: username}, (err, data) => {
     if (err) {
-      console.log('error: ', err);
+      // console.log('error: ', err);
     } else {
       let passwordCompare = data.password;
       bcrypt.compare(password, passwordCompare, (err, match) => {
         if (match) {
-          console.log('match: ', match);
+          // console.log('match: ', match);
           res.sendStatus(201);
         } else {
-          console.log('user not found/invalid credentials');
+          // console.log('user not found/invalid credentials');
           res.sendStatus(500);
         }
       });
@@ -75,10 +75,10 @@ app.post('/group', (req, res) => {
   });
   groupMongoInstance.save(err => {
     if (err) {
-      console.log('error group name likely exists: ');
+      // console.log('error group name likely exists: ');
       res.sendStatus(500);
     } else {
-      console.log('group ' + groupName + ' saved');
+      // console.log('group ' + groupName + ' saved');
       res.sendStatus(202);
     }
   });
@@ -87,7 +87,7 @@ app.post('/group', (req, res) => {
 app.get('/getGroups', (req, res) => {
   GroupsModel.find({}, (err, data) => {
     if (err) {
-      console.log('error getting /getGroups: ', err);
+      // console.log('error getting /getGroups: ', err);
       req.sendStatus(500);
     } else {
       res.status(200);
@@ -103,10 +103,10 @@ app.delete('/deleteGroup', (req, res) => {
   let groupName = req.body.groupName;
   GroupsModel.remove({name: groupName}, (err, data) => {
     if (err) {
-      console.log('error: ', err);
+      // console.log('error: ', err);
       res.sendStatus(500);
     } else {
-      console.log(groupName + ' removed successfully');
+      // console.log(groupName + ' removed successfully');
       res.sendStatus(202);
     }
   });
@@ -117,7 +117,7 @@ app.post('/message', (req, res) => {
   let messageObj = {user: req.body.username, message: req.body.message}
   MessagesModel.findOne({group: group}, (err, data) => {
     if (err) {
-      console.log('error on message post: ', err);
+      // console.log('error on message post: ', err);
       res.sendStatus(500);
     } else if (!data) {
       let newMessage = new MessagesModel({
@@ -126,19 +126,19 @@ app.post('/message', (req, res) => {
       });
       newMessage.save(err => {
         if (err) {
-          console.log('error saving new collection: ', err);
+          // console.log('error saving new collection: ', err);
           res.sendStatus(500);
         } else {
-          console.log('new collection saved');
+          // console.log('new collection saved');
           res.sendStatus(201);
         }
       });
     } else {
       MessagesModel.update({group: group}, {$addToSet: {messages: messageObj}}, (err, data) => {
         if (err) {
-          console.log('error updating collection: ', err);
+          // console.log('error updating collection: ', err);
         } else {
-          console.log('collection updated');
+          // console.log('collection updated');
           res.sendStatus(201);
         }
       });
@@ -149,7 +149,7 @@ app.post('/message', (req, res) => {
 app.get('/getMessages', (req, res) => {
   MessagesModel.findOne({group: req.query.groupName}, (err, data) => {
     if (err) {
-      console.log('error getting /getMessages: ', err);
+      // console.log('error getting /getMessages: ', err);
       req.sendStatus(500);
     } else if (data) {
       res.status(200);
@@ -171,15 +171,15 @@ app.delete('/deleteMessages', (req, res) => {
   let groupName = req.body.groupName;
   MessagesModel.remove({group: groupName}, (err, data) => {
     if (err) {
-      console.log('error: ', err);
+      // console.log('error: ', err);
       res.sendStatus(500);
     } else {
-      console.log('messages in ' + groupName + ' removed successfully');
+      // console.log('messages in ' + groupName + ' removed successfully');
       res.sendStatus(202);
     }
   });
 });
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+  // console.log(`listening on port ${port}`);
 });
