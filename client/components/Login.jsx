@@ -44,7 +44,7 @@ class Login extends React.Component {
         this.props.setUser();
       },
       error: (err) => {
-        // console.log('loginUser failed: ', err);
+        alert('Sorry we could not find that username and/or password. Please try again.');
       }
     });
   }
