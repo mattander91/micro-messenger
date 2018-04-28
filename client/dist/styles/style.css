@@ -1,0 +1,286 @@
+
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  background-size: cover;
+  background-repeat: none;
+}
+
+#app {
+  margin: 10px;
+}
+
+#title {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 30px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  width: 30%;
+  text-align: center;
+  margin-left: 30%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.header {
+  height: 70px;
+  width: 100%;
+  border: 2px solid #eceff1;
+  border-bottom: none;
+  background-color: #fff;
+  text-align: left;
+  display: inline-block;
+  position: relative;
+}
+
+.header button {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.buttons {
+  width: 15%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 10px;
+}
+
+.header button:hover {
+  background-color: RoyalBlue;
+}
+
+.left {
+  float: left;
+  width: 15%;
+  height: 700px;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+
+.left .top {
+  width: 100%;
+  height: 59px;
+  font-size: 25px;
+  color: #999;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: normal;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 1px;
+}
+
+.left input {
+  float: left;
+  width: 95%;
+  height: 45px;
+  padding-left: 10px;
+  border: 0;
+  background-color: #eceff1;
+  outline: none;
+  border-radius: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 5px 100px 5px 5px;
+}
+
+
+
+.left .groupList {
+  width: 100%;
+}
+
+.left .groupList .group {
+  position: relative;
+  width: 100%;
+  padding: 10px 5% 20px;
+  cursor: arrow;
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.left .groupList .group:hover {
+  background-color: #eceff1;
+}
+
+.right {
+  position: relative;
+  height: fit-content;
+  float: left;
+  width: 85%;
+  height: 700px;
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+
+.right .top {
+  width: 100%;
+  height: 60px;
+  padding: 15px 29px;
+  font-size: 25px;
+  color: #999;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: normal;
+  border-bottom: 1px solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
+  margin-bottom: 1px;
+}
+
+.right .chat {
+  position: relative;
+  display: none;
+  overflow: hidden;
+  padding: 0 35px 92px;
+  border-width: 1px 1px 1px 0;
+  border-style: solid;
+  border-color: #e6e6e6;
+}
+
+.right .write {
+  font-size: 16px;
+  height: 40px;
+  padding-left: 8px;
+  margin-left: 10px;
+  border: 0;
+  background-color: #eceff1;
+  width: 50%;
+  border-radius: 5px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+
+
+.right .bubble {
+  font-size: 20px;
+  position: relative;
+  display: inline-block;
+  clear: both;
+  margin-bottom: 8px;
+  padding: 13px 14px;
+  vertical-align: top;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 8px;
+  position: relative;
+}
+
+.right .bubble.you {
+  float: left;
+  color: #fff;
+  background-color: #00b0ff;
+  margin-left: 10px;;
+}
+
+.right .bubble.me {
+  float: right;
+  color: #1a1a1a;
+  background-color: #eceff1;
+  margin-right: 10px;
+}
+
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 2px 6px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+  position: absolute;
+  z-index: 1;
+}
+
+.accountForm {
+  position: absolute;
+  width: 400px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin: -200px -200px;
+}
+
+.accountForm input {
+  width: 300px;
+  height: 45px;
+  border: 0;
+  background-color: #eceff1;
+  outline: none;
+  border-radius: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  margin-top: 5px;;
+  margin-right: 100px;
+  margin-bottom: 15px;
+}
+
+.accountForm button {
+  background-color: DodgerBlue;
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  width: 300px;
+  margin-bottom: 5px;
+}
+
+.about {
+  margin-left: 10px;
+  margin-top: 25px;
+  line-height: 25px;
+  width: 70%;
+}
+
+.about h1 {
+  font-size: 25px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.about p {
+  margin-bottom: 10px;
+}
+
+.about button {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 2px 6px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 83px;
+  height: 40px;
+  margin-bottom: 25px;
+}
+
