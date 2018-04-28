@@ -36,7 +36,7 @@ class SignUp extends React.Component {
     }
     $.ajax({
       type: 'POST',
-      url: 'http://127.0.0.1:3000/signUp',
+      url: 'https://micro-messenger.herokuapp.com/signUp',
       data: newUser,
       success: () => {
         sessionStorage.setItem('user', this.state.newUserName);

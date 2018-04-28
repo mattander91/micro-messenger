@@ -31,7 +31,7 @@ class HandleMessages extends React.Component {
     }
     $.ajax({
       type: 'POST',
-      url: 'http://127.0.0.1:3000/message',
+      url: 'https://micro-messenger.herokuapp.com/message',
       data: messageObj,
       success: (data) => {
         console.log('POST successful');

@@ -28,7 +28,7 @@ class HandleGroup extends React.Component {
     }
     $.ajax({
       type: 'POST',
-      url: 'http://127.0.0.1:3000/group',
+      url: 'https://micro-messenger.herokuapp.com/group',
       data: newGroup,
       success: () => {
         this.props.fetchGroups();
@@ -42,7 +42,7 @@ class HandleGroup extends React.Component {
   deleteGroup(groupName) {
     $.ajax({
       type: 'DELETE',
-      url: 'http://127.0.0.1:3000/deleteGroup',
+      url: 'https://micro-messenger.herokuapp.com/deleteGroup',
       data: {groupName: groupName},
       success: () => {
         this.props.fetchGroups();

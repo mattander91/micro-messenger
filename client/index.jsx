@@ -41,7 +41,7 @@ class App extends React.Component {
   fetchMessagesFromClick(groupName) {
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:3000/getMessages',
+      url: 'https://micro-messenger.herokuapp.com/getMessages',
       data: {groupName: groupName},
       success: (fetchedMessages) => {
         this.setState({
@@ -58,7 +58,7 @@ class App extends React.Component {
   fetchGroups() {
     $.ajax({
       type: 'GET',
-      url: 'http://127.0.0.1:3000/getGroups',
+      url: 'https://micro-messenger.herokuapp.com/getGroups',
       success: (data) => {
         this.setState({
           groups: data
@@ -73,7 +73,7 @@ class App extends React.Component {
   deleteMessages(groupName) {
     $.ajax({
       type: 'DELETE',
-      url: 'http://127.0.0.1:3000/deleteMessages',
+      url: 'https://micro-messenger.herokuapp.com/deleteMessages',
       data: {groupName: groupName},
       success: () => {
         this.setState({
